@@ -14,8 +14,8 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
     <title>현이의 무지개 친구 월드</title>
-    <script type="module" crossorigin src="./assets/index-DSKzjoTj.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CSe2bRtE.css">
+    <script type="module" crossorigin src="./assets/index-D2wGGKQr.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DNhBgcsC.css">
   </head>
   <body>
     <canvas id="game"></canvas>
@@ -44,10 +44,9 @@
       <div class="message" id="message" role="status" aria-live="polite"></div>
 
       <section class="controlCoach" id="controlCoach" aria-label="빠른 조작 안내">
-        <span>왼쪽 원: 이동</span>
-        <span>오른쪽 화면: 시점</span>
-        <span>↻/R: 무기 변경</span>
-        <span>⚡/F: 공격, 활은 꾹</span>
+        <span>이동: 왼쪽 원 / WASD</span>
+        <span>시점: 오른쪽 화면 / 드래그</span>
+        <span>Space 점프 · F 공격 · R 무기</span>
         <button id="hideCoachButton" aria-label="조작 안내 숨기기">×</button>
       </section>
 
@@ -63,16 +62,16 @@
       <section class="palettePanel" aria-label="블록 색상"></section>
 
       <section class="actionStack" aria-label="액션">
-        <button class="iconButton" id="jumpButton" aria-label="점프" title="점프" data-label="점프">▲</button>
-        <button class="iconButton weaponButton" id="weaponButton" aria-label="무기 바꾸기" title="무기 바꾸기" data-label="무기">↻</button>
-        <button class="iconButton attackButton" id="attackButton" aria-label="공격" title="공격" data-label="공격">⚡</button>
-        <button class="iconButton boxButton" id="boxButton" aria-label="상자" title="상자" data-label="상자">
+        <button class="iconButton" id="jumpButton" aria-label="점프" title="점프" data-label="점프" data-key="Space">▲</button>
+        <button class="iconButton weaponButton" id="weaponButton" aria-label="무기 바꾸기" title="무기 바꾸기" data-label="무기" data-key="R">↻</button>
+        <button class="iconButton attackButton" id="attackButton" aria-label="공격" title="공격" data-label="공격" data-key="F">⚡</button>
+        <button class="iconButton boxButton" id="boxButton" aria-label="상자" title="상자" data-label="상자" data-key="B">
           ▣
         </button>
-        <button class="iconButton cubeButton" id="buildButton" aria-label="블록 놓기" title="블록 놓기" data-label="블록">
+        <button class="iconButton cubeButton" id="buildButton" aria-label="블록 놓기" title="블록 놓기" data-label="블록" data-key="E">
           <span></span>
         </button>
-        <button class="iconButton" id="removeButton" aria-label="블록 지우기" title="블록 지우기" data-label="지우기">×</button>
+        <button class="iconButton" id="removeButton" aria-label="블록 지우기" title="블록 지우기" data-label="지우기" data-key="Q">×</button>
       </section>
 
       <section class="movePad" id="movePad" aria-label="이동 조이스틱">
