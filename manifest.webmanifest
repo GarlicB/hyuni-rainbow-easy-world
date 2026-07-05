@@ -1,0 +1,19 @@
+{
+  "name": "현이의 무지개 친구 월드",
+  "short_name": "무지개 월드",
+  "description": "골드로 모든 아이템을 여는 이지 무지개 친구 웹게임",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#8fc8f2",
+  "theme_color": "#69c3d4",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

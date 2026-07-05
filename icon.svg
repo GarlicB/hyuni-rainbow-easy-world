@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#69c3d4"/>
+  <path d="M88 310c18-90 82-148 168-148s150 58 168 148" fill="none" stroke="#fff7c7" stroke-width="56" stroke-linecap="round"/>
+  <path d="M116 310c16-70 68-112 140-112s124 42 140 112" fill="none" stroke="#ff8fab" stroke-width="32" stroke-linecap="round"/>
+  <path d="M150 310c13-48 52-76 106-76s93 28 106 76" fill="none" stroke="#49c6a5" stroke-width="32" stroke-linecap="round"/>
+  <path d="M185 310c10-26 36-40 71-40s61 14 71 40" fill="none" stroke="#5db7de" stroke-width="32" stroke-linecap="round"/>
+  <rect x="163" y="292" width="186" height="128" rx="22" fill="#c58d54"/>
+  <path d="M163 334h186M210 292v128M302 292v128" stroke="#8c5a2e" stroke-width="14" stroke-linecap="round"/>
+  <rect x="205" y="334" width="102" height="42" rx="12" fill="#fff8dc"/>
+  <text x="256" y="365" text-anchor="middle" font-size="34" font-weight="900" font-family="system-ui, sans-serif" fill="#172026">현이</text>
+</svg>
