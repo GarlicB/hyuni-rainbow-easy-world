@@ -25,7 +25,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
 
       - name: Install
@@ -35,7 +35,7 @@ jobs:
         run: npm run build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
@@ -47,8 +47,8 @@ jobs:
     needs: build
     steps:
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
