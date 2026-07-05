@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#69c3d4" />
+    <meta
+      name="description"
+      content="갤럭시탭에서 홈 화면에 추가해서 플레이하는 이지 무지개 친구 웹게임"
+    />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <title>현이의 무지개 친구 월드</title>
+  </head>
+  <body>
+    <canvas id="game"></canvas>
+
+    <main class="hud" aria-label="게임 화면">
+      <section class="statusPanel" aria-label="진행 상태">
+        <div class="gameTitle">현이의 무지개 친구 월드</div>
+        <div class="meters">
+          <div><span>레벨</span><strong id="levelCount">1/4</strong></div>
+          <div><span id="goalLabel">빛</span><strong id="starCount">0/8</strong></div>
+          <div><span>처치</span><strong id="enemyCount">0/1</strong></div>
+          <div><span>골드</span><strong id="goldCount">0</strong></div>
+          <div><span>무기</span><strong id="weaponCount">밀치기</strong></div>
+          <div><span>시간</span><strong id="timeCount">0:00</strong></div>
+        </div>
+      </section>
+
+      <section class="topTools" aria-label="게임 메뉴">
+        <span class="easyPill">이지</span>
+        <button class="commandButton" id="helpButton">도움</button>
+        <button class="commandButton" id="avatarButton">아바타</button>
+        <button class="commandButton" id="shopButton">상점</button>
+        <button class="commandButton" id="installButton" hidden>설치</button>
+      </section>
+
+      <div class="message" id="message" role="status" aria-live="polite"></div>
+
+      <section class="controlCoach" id="controlCoach" aria-label="빠른 조작 안내">
+        <span>왼쪽 원: 이동</span>
+        <span>오른쪽 화면: 시점</span>
+        <span>↻/R: 무기 변경</span>
+        <span>⚡/F: 공격, 활은 꾹</span>
+        <button id="hideCoachButton" aria-label="조작 안내 숨기기">×</button>
+      </section>
+
+      <section class="miniMapPanel" aria-label="미니맵">
+        <canvas id="miniMap" width="150" height="150"></canvas>
+        <div class="mapLegend">
+          <span>현이</span>
+          <span>목표</span>
+          <span>친구</span>
+        </div>
+      </section>
+
+      <section class="palettePanel" aria-label="블록 색상"></section>
+
+      <section class="actionStack" aria-label="액션">
+        <button class="iconButton" id="jumpButton" aria-label="점프" title="점프" data-label="점프">▲</button>
+        <button class="iconButton weaponButton" id="weaponButton" aria-label="무기 바꾸기" title="무기 바꾸기" data-label="무기">↻</button>
+        <button class="iconButton attackButton" id="attackButton" aria-label="공격" title="공격" data-label="공격">⚡</button>
+        <button class="iconButton boxButton" id="boxButton" aria-label="상자" title="상자" data-label="상자">
+          ▣
+        </button>
+        <button class="iconButton cubeButton" id="buildButton" aria-label="블록 놓기" title="블록 놓기" data-label="블록">
+          <span></span>
+        </button>
+        <button class="iconButton" id="removeButton" aria-label="블록 지우기" title="블록 지우기" data-label="지우기">×</button>
+      </section>
+
+      <section class="movePad" id="movePad" aria-label="이동 조이스틱">
+        <div class="joystickBase">
+          <div class="joystickKnob" id="joystickKnob"></div>
+        </div>
+      </section>
+
+      <section class="winPanel" id="winPanel" aria-label="완료">
+        <div class="winTitle">모든 레벨 클리어</div>
+        <p id="finalSummary">수집 목표와 몬스터 처치를 모두 끝내고 무지개 문을 열었어요.</p>
+        <div class="clearStats">
+          <span id="clearTime">시간 0:00</span>
+          <span id="clearReward">보상 +12</span>
+        </div>
+        <button id="restartButton">다시 놀기</button>
+      </section>
+
+      <section class="shopPanel" id="shopPanel" aria-label="골드 상점">
+        <div class="shopHeader">
+          <div>
+            <div class="shopTitle">골드 상점</div>
+            <p>모든 아이템은 게임 골드로만 열려요.</p>
+          </div>
+          <button class="closeButton" id="closeShopButton" aria-label="닫기">×</button>
+        </div>
+        <div class="shopList" id="shopList"></div>
+      </section>
+
+      <section class="avatarPanel" id="avatarPanel" aria-label="아바타 편집">
+        <div class="shopHeader">
+          <div>
+            <div class="shopTitle">아바타 편집</div>
+            <p>현이 캐릭터 외형을 바로 바꿀 수 있어요.</p>
+          </div>
+          <button class="closeButton" id="closeAvatarButton" aria-label="닫기">×</button>
+        </div>
+        <div class="avatarEditor" id="avatarEditor"></div>
+      </section>
+
+      <section class="helpPanel" id="helpPanel" aria-label="조작 도움말">
+        <div class="shopHeader">
+          <div>
+            <div class="shopTitle">조작 도움</div>
+            <p>갤럭시탭은 터치, 컴퓨터는 키보드로 움직여요.</p>
+          </div>
+          <button class="closeButton" id="closeHelpButton" aria-label="닫기">×</button>
+        </div>
+        <div class="helpGrid">
+          <div><strong>이동</strong><span>왼쪽 큰 원을 밀기 / WASD</span></div>
+          <div><strong>시점</strong><span>오른쪽 빈 화면 드래그 / 마우스 드래그</span></div>
+          <div><strong>점프</strong><span>▲ 버튼 / Space</span></div>
+          <div><strong>공격</strong><span>⚡ 버튼 / F, 활은 누른 만큼 멀리 나가요</span></div>
+          <div><strong>무기</strong><span>↻ 버튼 / R, 레벨이 열어준 무기 안에서 바꿔요</span></div>
+          <div><strong>상자</strong><span>▣ 버튼 / B</span></div>
+          <div><strong>블록</strong><span>민트 블록 버튼 / E</span></div>
+          <div><strong>지우기</strong><span>× 버튼 / Q 또는 Backspace</span></div>
+          <div><strong>포털</strong><span>레벨 완료 뒤 백현이 앞 문으로 들어가기</span></div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
