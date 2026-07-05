@@ -2445,6 +2445,7 @@ function updateWeaponHud() {
   weaponCount.textContent = weapon.label;
   attackButton.textContent = weapon.symbol;
   attackButton.dataset.label = weapon.button;
+  attackButton.dataset.key = currentWeapon === "bow" ? "F 꾹" : "F";
   attackButton.title = `${weapon.label} 공격`;
   attackButton.setAttribute("aria-label", `${weapon.label} 공격`);
   if (weaponButton) {
@@ -4566,7 +4567,7 @@ function updateDebugState() {
 
 function animate(nowMs) {
   const now = nowMs / 1000;
-  const delta = Math.min(now - lastTime, 0.05);
+  const delta = Math.min(Math.max(0, now - lastTime), 0.05);
   lastTime = now;
 
   updateHud(delta);

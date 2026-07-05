@@ -326,6 +326,26 @@ button[hidden] {
   white-space: nowrap;
 }
 
+.iconButton::before {
+  position: absolute;
+  right: -7px;
+  top: -7px;
+  min-width: 24px;
+  max-width: 48px;
+  padding: 3px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: rgba(7, 16, 31, 0.84);
+  color: #fff;
+  content: attr(data-key);
+  font-size: 10px;
+  font-weight: 950;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(7, 16, 31, 0.22);
+}
+
 .iconButton.active {
   background: #172026;
   color: #fff;
@@ -843,6 +863,15 @@ button[hidden] {
     left: 50%;
     bottom: calc(100% + 5px);
     transform: translateX(-50%);
+  }
+
+  .iconButton::before {
+    right: -5px;
+    top: -5px;
+    min-width: 22px;
+    max-width: 42px;
+    padding: 3px 5px;
+    font-size: 9px;
   }
 
   .miniMapPanel {
